@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { Source } from './source.entity';
 import { SourceRepository } from './source.repository';
 import { SourceCreateRequestDto } from './dto';
+import { SourcePatch } from './source.types';
 
 @Injectable()
 export class SourceService {
@@ -19,7 +20,7 @@ export class SourceService {
     return this.repository.create(dto);
   }
 
-  public async update(dto: Source) {
+  public async update(dto: SourcePatch) {
     return this.repository.update(dto);
   }
 }

@@ -3,6 +3,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Source } from './source.entity';
 import { Repository } from 'typeorm';
 import { SourceCreateRequestDto } from './dto';
+import { SourcePatch } from './source.types';
 
 @Injectable()
 export class SourceRepository {
@@ -34,7 +35,7 @@ export class SourceRepository {
     return { ...dto, id: result.identifiers[0].id };
   }
 
-  public async update(dto: Source) {
+  public async update(dto: SourcePatch) {
     const { id, ...patch } = dto;
     const updateResult = await this.typeOrmRepo.update(id, patch);
 

@@ -7,4 +7,10 @@ export class SourceGetResponseDto implements Source {
 
   @Expose()
   public name: string;
+
+  @Expose()
+  public created_at: string;
+
+  @Expose()
+  public updated_at: string;
 }
