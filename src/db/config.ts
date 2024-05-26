@@ -1,7 +1,7 @@
 import { Expose, Type } from 'class-transformer';
 import { IsNotEmpty, IsNumber, IsString, Max, Min } from 'class-validator';
 import { config } from 'dotenv';
-import { validate } from 'src/utils';
+import { validate } from '../utils';
 import { DataSource, DataSourceOptions } from 'typeorm';
 
 config();
