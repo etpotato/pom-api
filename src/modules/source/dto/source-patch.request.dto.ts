@@ -1,7 +1,3 @@
-import { IsNotEmpty, IsString } from 'class-validator';
+import { NameRequestDto } from 'src/shared/request.dto';
 
-export class SourcePatchRequestDto {
-  @IsString()
-  @IsNotEmpty()
-  public name: string;
-}
+export class SourcePatchRequestDto extends NameRequestDto {}
