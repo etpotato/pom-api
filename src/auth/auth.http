@@ -1,0 +1,17 @@
+POST http://localhost:3001/api/auth/signup HTTP/1.1
+Content-Type: application/json
+
+{
+  "name": "Pavel",
+  "password": "my secure pass"
+}
+
+###
+
+POST http://localhost:3001/api/auth/signin HTTP/1.1
+Content-Type: application/json
+
+{
+  "name": "Pavel s",
+  "password": "my secure pass"
+}

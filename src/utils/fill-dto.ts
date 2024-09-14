@@ -6,5 +6,6 @@ export function fillDto<T extends object>(
 ) {
   return plainToInstance(dto, source, {
     excludeExtraneousValues: true,
+    exposeUnsetFields: false,
   });
 }
