@@ -1,3 +1,3 @@
-import { UserCreateRequestDto } from 'src/users/dto';
+import { UserCreateRequestDto } from '../../users';
 
 export class AuthSignInRequestDto extends UserCreateRequestDto {}

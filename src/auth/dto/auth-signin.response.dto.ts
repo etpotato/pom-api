@@ -17,7 +17,7 @@ class AuthSignInResponseUserDto implements Omit<User, 'passwordHash'> {
 
 export class AuthSignInResponseDto {
   @Expose()
-  public token: string;
+  public access_token: string;
 
   @Expose()
   @Type(() => AuthSignInResponseUserDto)

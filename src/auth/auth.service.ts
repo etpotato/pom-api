@@ -4,15 +4,19 @@ import {
   UnauthorizedException,
 } from '@nestjs/common';
 import { UsersService } from '../users';
-import { AuthSignInRequestDto, AuthSignInResponseDto } from './dto';
-import { encodeJwt, fillDto, validateHash } from 'src/utils';
-import { AppConfigService } from 'src/config';
+import {
+  AuthGetUserRequestDto,
+  AuthSignInRequestDto,
+  AuthSignInResponseDto,
+} from './dto';
+import { fillDto, validateHash } from 'src/utils';
+import { JwtService } from '@nestjs/jwt';
 
 @Injectable()
 export class AuthService {
   constructor(
     private usersService: UsersService,
-    private config: AppConfigService,
+    private jwtService: JwtService,
   ) {}
 
   async signUp(dto: AuthSignInRequestDto): Promise<AuthSignInResponseDto> {
@@ -23,13 +27,11 @@ export class AuthService {
     }
 
     const user = await this.usersService.create(dto);
-
+    const access_token = await this.jwtService.signAsync({ id: user.id });
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const { passwordHash, ...data } = user;
 
-    const token = await encodeJwt(data, this.config.get('JWT_SECRET'), 60 * 60);
-
-    return fillDto({ token, user: data }, AuthSignInResponseDto);
+    return fillDto({ access_token, user: data }, AuthSignInResponseDto);
   }
 
   async signIn(dto: AuthSignInRequestDto): Promise<AuthSignInResponseDto> {
@@ -39,11 +41,20 @@ export class AuthService {
     if (!isPasswordValid) {
       throw new UnauthorizedException();
     }
+
+    const access_token = await this.jwtService.signAsync({ id: user.id });
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const { passwordHash, ...data } = user;
 
-    const token = await encodeJwt(data, this.config.get('JWT_SECRET'), 60 * 60);
+    return fillDto({ access_token, user: data }, AuthSignInResponseDto);
+  }
 
-    return fillDto({ token, user: data }, AuthSignInResponseDto);
+  async getUser(id: AuthGetUserRequestDto['id']) {
+    const user = await this.usersService.findById(id);
+
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const { passwordHash, ...result } = user;
+
+    return result;
   }
 }

@@ -8,6 +8,16 @@ import { UserCreateRequestDto, UserResponseDto } from './dto';
 export class UsersService {
   constructor(private readonly usersRepository: UsersRepository) {}
 
+  async findById(id: User['id']) {
+    try {
+      const user = await this.usersRepository.getById(id);
+
+      return fillDto(user, UserResponseDto);
+    } catch (error) {
+      return null;
+    }
+  }
+
   async findByName(username: User['name']): Promise<UserResponseDto | null> {
     try {
       const user = await this.usersRepository.getByName(username);

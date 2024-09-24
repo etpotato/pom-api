@@ -1,3 +1,7 @@
+GET http://localhost:3001/api/auth/user/1 HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiaWF0IjoxNzI3MjAxMzk4LCJleHAiOjE3MjcyMDQ5OTh9.qYQQ-49GGKR3xE8Pz8TyS07TSb_h5DseTWeVqmUgVzc
+
+###
 POST http://localhost:3001/api/auth/signup HTTP/1.1
 Content-Type: application/json
 
