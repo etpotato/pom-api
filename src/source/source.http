@@ -1,6 +1,25 @@
+GET http://localhost:3001/api/sources HTTP/1.1
+
+###
+
+GET http://localhost:3001/api/sources/13 HTTP/1.1
+
+###
+
 POST http://localhost:3001/api/sources HTTP/1.1
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiaWF0IjoxNzI3MzY5Njg4LCJleHAiOjE3MjczNzMyODh9.nTckt0voqwPmoiTxK6bhJqEDFr8XkwwYf3I5zmC1WAk
 
 {
   "name": "test"
+}
+
+###
+
+PATCH http://localhost:3001/api/sources/13 HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiaWF0IjoxNzI3MzY5Njg4LCJleHAiOjE3MjczNzMyODh9.nTckt0voqwPmoiTxK6bhJqEDFr8XkwwYf3I5zmC1WAk
+
+{
+  "name": "test2"
 }
