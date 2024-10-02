@@ -8,9 +8,12 @@ import {
   AuthGetUserRequestDto,
   AuthSignInRequestDto,
   AuthSignInResponseDto,
+  AuthSignInResponseUserDto,
+  AuthUpdateUserRequestDto,
 } from './dto';
 import { fillDto, validateHash } from 'src/utils';
 import { JwtService } from '@nestjs/jwt';
+import { JwtData } from 'src/types';
 
 @Injectable()
 export class AuthService {
@@ -27,7 +30,11 @@ export class AuthService {
     }
 
     const user = await this.usersService.create(dto);
-    const access_token = await this.jwtService.signAsync({ id: user.id });
+    const jwtData: JwtData = {
+      id: user.id,
+      role: user.role,
+    };
+    const access_token = await this.jwtService.signAsync(jwtData);
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const { passwordHash, ...data } = user;
 
@@ -42,7 +49,11 @@ export class AuthService {
       throw new UnauthorizedException();
     }
 
-    const access_token = await this.jwtService.signAsync({ id: user.id });
+    const jwtData: JwtData = {
+      id: user.id,
+      role: user.role,
+    };
+    const access_token = await this.jwtService.signAsync(jwtData);
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const { passwordHash, ...data } = user;
 
@@ -55,6 +66,10 @@ export class AuthService {
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const { passwordHash, ...result } = user;
 
-    return result;
+    return fillDto(result, AuthSignInResponseUserDto);
+  }
+
+  public async updateUser(dto: AuthUpdateUserRequestDto) {
+    await this.usersService.update(dto);
   }
 }

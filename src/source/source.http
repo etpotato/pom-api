@@ -8,7 +8,7 @@ GET http://localhost:3001/api/sources/13 HTTP/1.1
 
 POST http://localhost:3001/api/sources HTTP/1.1
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiaWF0IjoxNzI3MzY5Njg4LCJleHAiOjE3MjczNzMyODh9.nTckt0voqwPmoiTxK6bhJqEDFr8XkwwYf3I5zmC1WAk
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZSI6IkFkbWluIiwiaWF0IjoxNzI3ODg0NjY2LCJleHAiOjE3Mjc4ODgyNjZ9.KXJJwjzl2VbHWbcVguY-HXLLn6ET-73JjmjoIuLOgEo
 
 {
   "name": "test"
@@ -18,7 +18,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiaWF0IjoxN
 
 PATCH http://localhost:3001/api/sources/13 HTTP/1.1
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiaWF0IjoxNzI3MzY5Njg4LCJleHAiOjE3MjczNzMyODh9.nTckt0voqwPmoiTxK6bhJqEDFr8XkwwYf3I5zmC1WAk
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZSI6IkFkbWluIiwiaWF0IjoxNzI3MzczNTA5LCJleHAiOjE3MjczNzcxMDl9.DgZOndykM_IJVUCkDP0pldDnas9b4V58IbdokBeg1ZE
 
 {
   "name": "test2"

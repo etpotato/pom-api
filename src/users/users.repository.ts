@@ -2,6 +2,7 @@ import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { User } from './users.entity';
 import { Repository } from 'typeorm';
+import { UserUpdateRequestDto } from './dto';
 
 @Injectable()
 export class UsersRepository {
@@ -29,11 +30,21 @@ export class UsersRepository {
     return result;
   }
 
-  public async create(dto: Omit<User, 'id' | 'created_at' | 'updated_at'>) {
+  public async create(
+    dto: Omit<User, 'id' | 'role' | 'created_at' | 'updated_at'>,
+  ) {
     const result = await this.typeOrmRepo.upsert(dto, {
       conflictPaths: ['name'],
     });
 
     return { ...dto, id: result.identifiers[0].id };
+  }
+
+  public async update({ id, ...data }: UserUpdateRequestDto) {
+    const result = await this.typeOrmRepo.update(id, data);
+
+    if (!result.affected) {
+      throw new NotFoundException();
+    }
   }
 }

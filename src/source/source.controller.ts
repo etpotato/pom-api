@@ -19,6 +19,8 @@ import {
 import { fillDto } from 'src/utils';
 import { StatusCodes } from 'http-status-codes';
 import { AuthGuard } from 'src/auth';
+import { Roles, RolesGuard } from 'src/roles';
+import { Role } from 'src/types';
 
 @Controller('sources')
 export class SourceController {
@@ -38,7 +40,8 @@ export class SourceController {
     return fillDto(sources, SourceGetResponseDto);
   }
 
-  @UseGuards(AuthGuard)
+  @UseGuards(AuthGuard, RolesGuard)
+  @Roles(Role.Admin)
   @HttpCode(HttpStatus.CREATED)
   @Post('/')
   private async create(@Body() dto: SourceCreateRequestDto) {
@@ -47,7 +50,8 @@ export class SourceController {
     return fillDto(created, SourceGetResponseDto);
   }
 
-  @UseGuards(AuthGuard)
+  @UseGuards(AuthGuard, RolesGuard)
+  @Roles(Role.Admin)
   @HttpCode(StatusCodes.NO_CONTENT)
   @Patch(':id')
   private async update(

@@ -1,3 +1,4 @@
+import { Role, RoleValue } from 'src/types';
 import {
   Column,
   CreateDateColumn,
@@ -16,6 +17,9 @@ export class User {
 
   @Column()
   public passwordHash: string;
+
+  @Column({ type: 'enum', enum: Role, default: Role.User })
+  public role: RoleValue;
 
   @CreateDateColumn({ type: 'timestamptz' })
   public created_at: string;

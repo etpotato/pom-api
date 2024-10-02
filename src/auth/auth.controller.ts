@@ -7,10 +7,17 @@ import {
   Get,
   Param,
   UseGuards,
+  Patch,
 } from '@nestjs/common';
 import { AuthService } from './auth.service';
-import { AuthGetUserRequestDto, AuthSignInRequestDto } from './dto';
+import {
+  AuthGetUserRequestDto,
+  AuthSignInRequestDto,
+  AuthUpdateUserRequestBodyDto,
+} from './dto';
 import { AuthGuard } from './auth.guard';
+import { Roles, RolesGuard } from 'src/roles';
+import { Role } from 'src/types';
 
 @Controller('auth')
 export class AuthController {
@@ -33,5 +40,16 @@ export class AuthController {
   @Post('signin')
   public async signIn(@Body() dto: AuthSignInRequestDto) {
     return this.authService.signIn(dto);
+  }
+
+  @Roles(Role.Admin)
+  @UseGuards(AuthGuard, RolesGuard)
+  @HttpCode(HttpStatus.NO_CONTENT)
+  @Patch('user/:id')
+  public async updateUser(
+    @Param('id') id: AuthGetUserRequestDto['id'],
+    @Body() data: AuthUpdateUserRequestBodyDto,
+  ) {
+    return this.authService.updateUser({ ...data, id });
   }
 }

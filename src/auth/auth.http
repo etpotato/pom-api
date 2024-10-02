@@ -1,5 +1,5 @@
-GET http://localhost:3001/api/auth/user/1 HTTP/1.1
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiaWF0IjoxNzI3MjAxMzk4LCJleHAiOjE3MjcyMDQ5OTh9.qYQQ-49GGKR3xE8Pz8TyS07TSb_h5DseTWeVqmUgVzc
+GET http://localhost:3001/api/auth/user/2 HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiaWF0IjoxNzI3MzczMDI2LCJleHAiOjE3MjczNzY2MjZ9.Oiii5EA8gu5kCs69aBugkNVcpZLP8jmwQU9nD7faZoc
 
 ###
 POST http://localhost:3001/api/auth/signup HTTP/1.1
@@ -16,6 +16,17 @@ POST http://localhost:3001/api/auth/signin HTTP/1.1
 Content-Type: application/json
 
 {
-  "name": "Pavel s",
+  "name": "Pavel",
   "password": "my secure pass"
+}
+
+###
+
+PATCH http://localhost:3001/api/auth/user/4 HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiaWF0IjoxNzI3MzczMDI2LCJleHAiOjE3MjczNzY2MjZ9.Oiii5EA8gu5kCs69aBugkNVcpZLP8jmwQU9nD7faZoc
+Content-Type: application/json
+
+{
+  "name": "Jesus",
+  "role": "Admin"
 }
