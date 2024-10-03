@@ -1,3 +1,5 @@
+import './sentry';
+
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app';
 import { AppConfigService } from './config';

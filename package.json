@@ -6,7 +6,7 @@
   "private": true,
   "license": "UNLICENSED",
   "scripts": {
-    "build": "nest build",
+    "build": "nest build && pnpm sentry:sourcemaps",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
     "start": "nest start",
     "start:dev": "nest start --watch",
@@ -21,7 +21,8 @@
     "migration:run": "typeorm migration:run -d dist/db/config.js",
     "migration:generate": "npx typeorm-ts-node-commonjs migration:generate ./src/db/migrations/$name -d src/db/config.ts",
     "migration:create": "npx typeorm-ts-node-commonjs migration:create ./src/db/migrations/$name",
-    "migration:revert": "npx typeorm-ts-node-commonjs migration:revert -d src/db/config.ts"
+    "migration:revert": "npx typeorm-ts-node-commonjs migration:revert -d src/db/config.ts",
+    "sentry:sourcemaps": "sentry-cli sourcemaps inject --org pavel-mareev --project node-nestjs ./dist && sentry-cli sourcemaps upload --org pavel-mareev --project node-nestjs ./dist"
   },
   "dependencies": {
     "@nestjs/common": "10.3.8",
@@ -31,6 +32,9 @@
     "@nestjs/mapped-types": "2.0.5",
     "@nestjs/platform-express": "10.3.8",
     "@nestjs/typeorm": "10.0.2",
+    "@sentry/cli": "^2.36.6",
+    "@sentry/nestjs": "8.33.0",
+    "@sentry/profiling-node": "8.33.0",
     "class-transformer": "0.5.1",
     "class-validator": "0.14.1",
     "dotenv": "16.4.5",
