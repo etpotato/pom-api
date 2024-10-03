@@ -1,5 +1,5 @@
 GET http://localhost:3001/api/auth/user/2 HTTP/1.1
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiaWF0IjoxNzI3MzczMDI2LCJleHAiOjE3MjczNzY2MjZ9.Oiii5EA8gu5kCs69aBugkNVcpZLP8jmwQU9nD7faZoc
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZSI6IkFkbWluIiwiaWF0IjoxNzI3OTU2MDg2LCJleHAiOjE3Mjc5NTk2ODZ9.4792NPLrjK_4ZmG7j5ha0xMmNrd0qLlMAonI3BknYi0
 
 ###
 POST http://localhost:3001/api/auth/signup HTTP/1.1

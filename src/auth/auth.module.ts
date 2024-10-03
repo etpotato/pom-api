@@ -4,9 +4,11 @@ import { AuthService } from './auth.service';
 import { UsersModule } from '../users';
 import { AppConfigModule, AppConfigService } from 'src/config';
 import { JwtModule } from '@nestjs/jwt';
+import { LoggerModule } from 'src/logger';
 
 @Module({
   imports: [
+    LoggerModule,
     UsersModule,
     JwtModule.registerAsync({
       imports: [AppConfigModule],

@@ -14,12 +14,14 @@ import {
 import { fillDto, validateHash } from 'src/utils';
 import { JwtService } from '@nestjs/jwt';
 import { JwtData } from 'src/types';
+import { Logger } from 'src/logger';
 
 @Injectable()
 export class AuthService {
   constructor(
     private usersService: UsersService,
     private jwtService: JwtService,
+    private logger: Logger,
   ) {}
 
   async signUp(dto: AuthSignInRequestDto): Promise<AuthSignInResponseDto> {
@@ -37,6 +39,8 @@ export class AuthService {
     const access_token = await this.jwtService.signAsync(jwtData);
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const { passwordHash, ...data } = user;
+
+    this.logger.info('User singed up', user);
 
     return fillDto({ access_token, user: data }, AuthSignInResponseDto);
   }
@@ -56,6 +60,8 @@ export class AuthService {
     const access_token = await this.jwtService.signAsync(jwtData);
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const { passwordHash, ...data } = user;
+
+    this.logger.info('User singed in', user);
 
     return fillDto({ access_token, user: data }, AuthSignInResponseDto);
   }
